@@ -13,7 +13,7 @@ contract("EthSwap", (accounts) => {
       const token = await Token.new();
       const name = await token.name();
 
-      assert.equal(name, "DApp Token..");
+      assert.equal(name, "DApp Token");
     });
   });
 
@@ -29,6 +29,8 @@ contract("EthSwap", (accounts) => {
       let token = await Token.new();
       let ethSwap = await EthSwap.new();
       await token.transfer(ethSwap.address, "1000000000000000000000000");
+      let balance = await token.balanceOf(ethSwap.address);
+      assert.equal(balance.toString(), "1000000000000000000000000");
     });
   });
 });
